@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<!-- user-scalable=no 禁止双指缩放 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<title>Document</title>
+</head>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- 省市县三级选择控件 -->
+<script src="https://cdn.bootcss.com/distpicker/2.0.3/distpicker.js"></script>
+
+<body>
+	<div class="page">
+		<form class="form-horizontal" role="form" id="form">
+			<div class="title">bootstrap、distpicker</div>
+			<div class="form-group">
+				<label for="name" class="control-label">收件人</label>
+				<div class="control-value">
+					<input type="text" class="form-control" name="name" placeholder="请输入收件人">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="tel" class="control-label">联系电话</label>
+				<div class="control-value">
+					<input type="tel" class="form-control" name="tel" placeholder="请输入联系电话">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="tel" class="control-label">归属区域</label>
+				<div class="control-value" name="distpicker" data-toggle="distpicker">
+					<select data-province="陕西省" name="province"></select>
+					<select data-city="西安市" name="city"></select>
+					<select data-district="新城区" name="district"></select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="address" class="control-label">详细地址</label>
+				<div class="control-value">
+					<textarea class="form-control" rows="2" name="address" placeholder="请输入详细地址"></textarea>
+				</div>
+			</div>
+			<div class="btn btn-info" id="submit">提交</div>
+		</form>
+	</div>
+</body>
+
+</html>
+<script>
+	$(function () {
+		$('#target').distpicker({
+			province: '浙江省',
+			city: '杭州市',
+			district: '西湖区'
+		});
+		$("#submit").on("click", function () {
+			var form = document.querySelector("form");
+			let tel = form.tel.value
+			console.log(tel)
+			let data = $("#form").serialize()
+			console.log(data)
+		})
+	})
+</script>
+<style>
+	.page {
+		margin: auto;
+		text-align: center;
+		background-color: #4e000e;
+		background-image: url(./bg-pc.jpg);
+		background-size: 100% 100%;
+		/* 处理背景高度 */
+		height: 100vh;
+		box-sizing: border-box
+	}
+	/* 手机端 换肤 */
+	@media screen and (min-width: 320px)and (max-width: 750px) {
+		.page {
+			background-image: url(./bg-phone.jpg);
+		}
+	}
+
+	form {
+		max-width: 1080px;
+		position: relative;
+		transform: translate(-50%, -50%);
+		padding: 30px;
+		left: 50%;
+		top: 50%;
+	}
+	.title {
+		font-size: 18px;
+		color: white;
+		padding: 20px;
+	}
+	.form-group {
+		display: flex;
+	}
+
+	label {
+		color: #ffffff;
+		width: 100px;
+		padding-right: 10px;
+	}
+
+	.control-value {
+		width: calc(100% - 100px);
+	}
+
+	select {
+		width: calc(33% - 2px);
+		height: 34px;
+	}
+
+</style>
